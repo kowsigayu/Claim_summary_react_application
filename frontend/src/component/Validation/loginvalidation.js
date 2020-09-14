@@ -1,4 +1,4 @@
-export default function validate2(user) {
+export default function loginValidate(user) {
     let errorMsg = {};
 
     // Employee Id Validation

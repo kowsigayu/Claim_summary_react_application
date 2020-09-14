@@ -1,11 +1,13 @@
-export default function validate2(user) {
+export default function updateValidate(user) {
     let errorMsg = {};
 
     // claim Number Validation
     if (!user.claimno.trim()) {
         errorMsg.claimNumber = "Claim Number is required"
     } else if (user.claimno.length > 9) {
-        errorMsg.claimNumber = "Claim Number should be maximum length of 9"
+        errorMsg.claimNumber = "Claim Number should be Maximum length of 9"
+    } else if (user.claimno.length < 9) {
+        errorMsg.claimNumber = "Claim Number should be Minimum length of 9"
     }
     else if (!/^[0-9a-zA-Z]+$/.test(user.claimno)) {
         errorMsg.claimNumber = "Claim Number should be AlphaNumeric"

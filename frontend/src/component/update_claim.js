@@ -1,18 +1,34 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
 import useUpdateForm from './Validation/useUpdateForm';
-import validate2 from './Validation/updateValidation'
+import updateValidate from './Validation/updateValidation'
 
 const UpdateClaim = (submitForm) => {
-    
-    const {onSubmit, onInputChange, errorMsg, user} = useUpdateForm(submitForm, validate2 );
+
+    const dispatch = useDispatch();
+
+    const { onSubmit, onInputChange, errorMsg, user } = useUpdateForm(submitForm, updateValidate);
     const { empid, name, claimno, claimtype, claimprogram, startdate, enddate } = user;
 
-
+    const addClaim = () => {
+        dispatch({
+            type: "UPDATE",
+            payload: {
+                empid: user.empid,
+                name: user.name,
+                claimno: user.claimno,
+                claimtype: user.claimtype,
+                claimprogram: user.claimprogram,
+                startdate: user.startdate,
+                enddate: user.enddate
+            },
+        });
+    };
     return (
         <div className="container">
             <h2>Update Claim Information</h2>
             <div className="container">
-                <form >
+                <form onSubmit={onSubmit}>
                     <div className="form-group row">
                         <label for="" className="col-sm-2 col-form-label">Employee Id:</label>
                         <div className="col-sm-10">
@@ -107,7 +123,7 @@ const UpdateClaim = (submitForm) => {
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
                             {/* <button className="btn btn-outline-primary mr-4">Cancel</button> */}
-                            <button type="submit" className="btn btn-primary" onClick={onSubmit}>Update</button>
+                            <button type="submit" className="btn btn-primary" data-testid="update" onClick={(e) => addClaim(e)}>Update</button>
                         </div>
                     </div>
                 </form>

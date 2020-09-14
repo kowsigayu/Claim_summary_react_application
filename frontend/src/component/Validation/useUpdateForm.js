@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 
-const useUpdateForm = (submitForm, validate2) => {
+const useUpdateForm = (submitForm, updateValidate) => {
     let history = useHistory();
     const { id } = useParams();
     const [user, setUser] = useState({
@@ -15,7 +15,7 @@ const useUpdateForm = (submitForm, validate2) => {
         enddate: ""
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [errorMsg, setErrors2] = useState({});
+    const [errorMsg, setErrors] = useState({});
 
     const onInputChange = e => {
         setUser({ ...user, [e.target.name]: e.target.value })
@@ -24,8 +24,7 @@ const useUpdateForm = (submitForm, validate2) => {
     const onSubmit = async e => {
         e.preventDefault();
         setIsSubmitted(true);
-        setErrors2(validate2(user));
-        // console.log("handle2 Submit method executed in useUpadteForm");
+        setErrors(updateValidate(user));
         if (Object.keys(errorMsg).length === 0 && isSubmitted) {
             await axios.put(`http://localhost:4000/postMessages/${id}`, user);
             history.push("/viewclaim");

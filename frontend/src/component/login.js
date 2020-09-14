@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import useLoginForm from './Validation/useLoginForm';
-import validate2 from './Validation/loginvalidation';
+import loginValidate from './Validation/loginvalidation';
 
 const Login = (submitForm) => {
-    const { onSubmit, onInputChange, errorMsg, user } = useLoginForm(submitForm, validate2);
+    const { onSubmit, onInputChange, errorMsg, user } = useLoginForm(submitForm, loginValidate);
 
     return (
         <div className="App">
@@ -30,7 +30,7 @@ const Login = (submitForm) => {
                 <span className="text-danger">{errorMsg.password}</span>
                 <div>
                     {/* <Link className="btn btn-primary mr-2" id="signinbutton" >Sign In</Link> */}
-                    <button type="submit" className="btn btn-primary mr-2" onClick={onSubmit}>Sign In</button>
+                    <button type="submit" className="btn btn-primary mr-2" id="signinbutton" data-testid="Login" onClick={onSubmit}>Sign In</button>
                 </div>
             </form>
         </div>

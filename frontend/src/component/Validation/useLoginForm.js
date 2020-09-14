@@ -2,13 +2,13 @@
 /* eslint-disable no-undef */
 import { useState } from 'react';
 
-const useUpdateForm = (submitForm, validate2) => {
+const useUpdateForm = (submitForm, loginValidate) => {
     const [user, setUser] = useState({
         userid: '',
         password: ''
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [errorMsg, setErrors2] = useState({});
+    const [errorMsg, setErrors] = useState({});
 
     const onInputChange = e => {
         setUser({ ...user, [e.target.name]: e.target.value })
@@ -17,8 +17,7 @@ const useUpdateForm = (submitForm, validate2) => {
     const onSubmit = async e => {
         e.preventDefault();
         setIsSubmitted(true);
-        setErrors2(validate2(user));
-        console.log("handle2 Submit method executed in useUpadteForm");
+        setErrors(loginValidate(user));
         if (Object.keys(errorMsg).length === 0 && isSubmitted) {
             console.log("route path");
             window.location.href = "/viewclaim";

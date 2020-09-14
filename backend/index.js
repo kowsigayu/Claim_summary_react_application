@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 var cors = require('cors')
 
-var postMessageRouters = require('./controllers/postMessageController') //r
+var postMessageRouters = require('./controllers/crudController')
 
 const app = express();
 app.use(cors());

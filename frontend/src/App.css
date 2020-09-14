@@ -6,9 +6,8 @@
   background: #f2f2f2;
   border-radius: 1.5em;
 }
-#Empid, #password, #claimNoError, #claimProgramError, #endDateError, #startDateError {
+span{
   padding-left: 10px;
-  color: red;
 }
 #login-form h1 {
   text-align: center;
